@@ -1,36 +1,34 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App.jsx'
-import './index.css'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Nav from './COMPONENTS/Nav';
-import Footer from './COMPONENTS/Footer';
-import Error from './Routes/Error';
-import Home from './Routes/Home';
-import Login from './Routes/Login';
-import Produtos from './Routes/Produtos';
-import Contato from './Routes/Contato';
+import Home from './routes/Home.jsx';
+import Error from './routes/Error.jsx';
+import Login from './routes/Login.jsx';
+
+import Sobre from './routes/Sobre.jsx';
+import Contato from './routes/Contato.jsx';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './main.css'
+import Produtos from './routes/Produtos.jsx';
+
+const router = createBrowserRouter ([
+  {
+    path:'/', element:<App />,
+    errorElement:<Error />,
+
+    children: [
+      {path: '/', element: <Home />},
+      {path: '/Produtos',element:<Produtos/>},
+      {path: '/Login', element: <Login />},
+      {path: '/Sobre', element: <Sobre/>},
+      {path: '/Contato', element: <Contato/>},
+    ]
+  }
+])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router}/>
   </React.StrictMode>,
 )
-
-function Main() {
-  return (
-    <Router>
-      <Nav />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/login" component={Login} />
-        <Route path="/produtos" component={Produtos} />
-        <Route path="/contato" component={Contato} />
-        <Route component={Error} />
-      </Switch>
-      <Footer />
-    </Router>
-  );
-}
-
-export default Main;
