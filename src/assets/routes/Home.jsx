@@ -1,6 +1,6 @@
-export default function Home(){ import React from 'react';
+import React from 'react';
 
-const Home = () => {
+export default function Home() {
   return (
     <div>
       <h1>Bem-vindo à Loja de Instrumentos Musicais</h1>
@@ -12,9 +12,4 @@ const Home = () => {
       </ul>
     </div>
   );
-};
-
-export default Home;
-
-    
 }
